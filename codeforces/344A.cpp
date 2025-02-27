@@ -1,31 +1,32 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 int main(){
 
 	int n;
-	string s, prev;
+	string s;
+	int cont = 0;
+	vector<string> v;
 
-	cin >> n;
-	cin >> prev;
-	n--;
-
-	int cont = 1;
-	int maximum = -1;
+	cin >> n ;
 
 	while(n--){
 		cin >> s;
-		if(s == prev){
-			cont++;
-			maximum = max(maximum, cont);
-		}else{
-			cont = 1;
-		}
-		prev = s;
+		v.push_back(s);
 	}
 
-	cout << maximum << endl;
+	for(int i = 0; i < v.size(); i++){
+		cont++;
+		int j = i;
+		while(j < v.size() && v[i] == v[j]){
+			j++;
+		}
+		i = j - 1;
+	}
+
+	cout << cont << endl;
 
 	return 0;
 }
